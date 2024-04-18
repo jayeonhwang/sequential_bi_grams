@@ -2,16 +2,30 @@
 # Given a string of words, create a set of every sequential bi-gram.  Bigrams are two-word combinations of the text, i.e. “Charlie rocks”.
  
 
-words = "Make a killer impression on whoever you’re meeting."
-word = words.split(' ')
-index = 0
+class BigramsGenerator
+  attr_reader :text
+  attr_writer :text
 
-bigrams = []
+  def initialize (text)
+    @text = text
+  end
 
-while word.length > index
-bigram = "#{word[index]} #{word[index+1]}"
-  bigrams << bigram
-  index += 1
+  def bigrams
+    words = @text.split(' ')
+    bigrams = []
+    index = 0
+      while index < words.length - 1
+        bigram = "#{words[index]} #{words[index+1]}"
+        bigrams << bigram
+        index += 1
+      end
+      bigrams
+  end
+
 end
 
-p bigrams
+
+words = "Make a killer impression on whoever you’re meeting."
+
+quote = BigramsGenerator.new(words)
+p quote.bigrams
